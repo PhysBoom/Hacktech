@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="033dac0e-3283-417c-b181-995477179c5f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/sentences.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentences.py" afterDir="false" />
@@ -33,5 +36,8 @@
       <updated>1646461564958</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
