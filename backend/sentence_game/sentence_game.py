@@ -42,11 +42,11 @@ class SentenceGame(FirebasePushableObject):
     def _generate_sentence(self):
         self.sentence = self.sentence_analyzer.generate_random_sentence()
 
-    def _play_round(self, new_sentence):
-        self.past_words.append(new_sentence)
+    def play_round(self, new_sentence):
+
         if new_sentence in self.past_words:
             return {"score": self.score, "message": "You already played this sentence!"}
-
+        self.past_words.append(new_sentence)
         if self.sentence_analyzer.check_grammar(new_sentence):
             return {
                 "score": self.score,
@@ -66,12 +66,15 @@ class SentenceGame(FirebasePushableObject):
         self.score += SentenceAnalyzer.get_sentence_complexity(new_sentence)
         return {"score": self.score, "message": "Good sentence!"}
 
-    def push(self):
-        # Push everything but the sentence analyzer object.
+    def is_finished(self):
+        return self.round_number >= self.rounds
+
+    def to_json(self):
         tmp = self.sentence_analyzer
         self.sentence_analyzer = None
-        super().push()
+        resp = super().to_json()
         self.sentence_analyzer = tmp
+        return resp
 
     def play_game(self):
         print(self.sentence)
