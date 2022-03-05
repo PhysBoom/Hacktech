@@ -6,7 +6,6 @@ from utility.firebase_pushable_object import FirebasePushableObject
 class SentenceGame(FirebasePushableObject):
     """
     The SentenceGame class for the replace the sentence game thing.
-    :param <uuidv4> game_id: The game id.
     :param <string[]> past_words: The past words that the user has used.
     :param <int> score: The score of the user.
     :param <int> rounds: The number of rounds to play
@@ -16,7 +15,8 @@ class SentenceGame(FirebasePushableObject):
 
     def __init__(
         self,
-        game_id=None,
+        parent_path="SentenceGames",
+        object_id=None,
         past_words=[],
         score=0,
         rounds=10,
@@ -24,10 +24,11 @@ class SentenceGame(FirebasePushableObject):
         sentence=None,
     ):
         # Generate a random UUIDv4 for game_id if its none.
-        if game_id is None:
-            self.game_id = str(uuid.uuid4())
+        if object_id is None:
+            self.object_id = str(uuid.uuid4())
         else:
-            self.game_id = game_id
+            self.object_id = object_id
+        self.parent_path = parent_path
         self.past_words = past_words
         self.score = score
         self.sentence_analyzer = SentenceAnalyzer.get_instance()
@@ -65,6 +66,13 @@ class SentenceGame(FirebasePushableObject):
         self.score += SentenceAnalyzer.get_sentence_complexity(new_sentence)
         return {"score": self.score, "message": "Good sentence!"}
 
+    def push(self):
+        # Push everything but the sentence analyzer object.
+        tmp = self.sentence_analyzer
+        self.sentence_analyzer = None
+        super().push()
+        self.sentence_analyzer = tmp
+
     def play_game(self):
         print(self.sentence)
         for i in range(self.rounds):
@@ -76,8 +84,3 @@ class SentenceGame(FirebasePushableObject):
 
         # Print final score.
         print(f"Final score: {self.score}")
-
-
-if __name__ == "__main__":
-    game = SentenceGame()
-    game.play_game()

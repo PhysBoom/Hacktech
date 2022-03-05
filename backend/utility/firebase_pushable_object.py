@@ -24,27 +24,25 @@ class FirebasePushableObject:
         path = self.parent_path + '/' + self.object_id
         push_object(path, self.to_json())
 
-    @staticmethod
-    def load(parent_path, object_id):
+    def load(self):
         """
         Gets the object from Firebase.
         """
-        path = parent_path + '/' + object_id
+        path = self.parent_path + '/' + self.object_id
         # Get the data from the path
         data = get_object(path)
-        # Remove parent_path and object_id from data to prevent multiple values error
-        data.pop('parent_path', None)
-        data.pop('object_id', None)
         # Create a new object from the data
-        return FirebasePushableObject.from_dict(parent_path, object_id, **data)
+        return self.from_dict(**data)
 
-    @staticmethod
-    def from_dict(parent_path, object_id, **kwargs):
+    def from_dict(self, **kwargs):
         """
-        Creates a FirebasePushableObject from a dictionary.
+        Creates a FirebasePushableObject from a dictionary
         """
+        parent_path = kwargs.pop('parent_path')
+        object_id = kwargs.pop('object_id')
+        self.__init__(parent_path, object_id, **kwargs)
 
-        return FirebasePushableObject(parent_path, object_id, **kwargs)
+
 
 
 
