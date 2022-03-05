@@ -1,4 +1,5 @@
 from flask import Flask, request
+from utility.firebase_pushable_object import FirebasePushableObject
 import os
 import waitress
 from dotenv import dotenv_values
@@ -16,6 +17,8 @@ def index():
 if __name__ == "__main__":
     if ENVIRONMENT != "production":
         app.run("localhost", 5000, debug=True)
+
     else:
+
         # Serve on port 0.0.0.0:80
         waitress.serve(app, host="0.0.0.0", port=80)
