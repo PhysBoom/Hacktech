@@ -15,6 +15,23 @@ model = SentenceTransformer('stsb-roberta-large')
 MOST_FREQUENT_WORD = 0.0537 # Frequency of "the"
 FREQUENCY_MULTIPLIER = 1/MOST_FREQUENT_WORD
 
+class SentenceGame:
+  def __init__(self, past_words=[], score=0):
+    self.past_words = past_words
+    self.score = score
+    self.generate_sentence()
+
+  def generate_sentence(self):
+    
+    text = ""
+    while not text or tool.check(text):
+      text= f"I {random.choice(verbs)} {random.choice(gerund_list)}"
+
+    return text
+  
+  def get_score(self):
+
+
 
 def get_similarity_scores(s1, s2):
   embedding1 = model.encode(s1, convert_to_tensor=True)
@@ -33,16 +50,8 @@ def complexity(word):
   return 15
 
 
-def get_synonyms(word):
-  synonyms = []
-
-  for syn in wordnet.synsets(word):
-    for lm in syn.lemmas():
-            synonyms.append(lm.name())
-  return set(synonyms)
-
-verbs=["enjoy", "like"]
-gerund_list=["walking","running","swimming"]
+verbs=["enjoy", "like", "hate", "despise", "thoroughly enjoy", "love", "absolutely hate"]
+gerund_list=["walking","running","swimming", "biking", "sprinting", "boating", "skiing"]
 adverb_list=["quickly", "swimmingly"]
 adjective_list=["red","blue"]
 nouns=["dogs", "cats"]
