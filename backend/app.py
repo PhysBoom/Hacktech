@@ -3,6 +3,7 @@ from sentence_game.sentence_game_blueprint import sentence_game_blueprint
 from auth_methods.auth_blueprint import auth_blueprint
 import waitress
 from dotenv import dotenv_values
+import json
 
 ENVIRONMENT = dotenv_values(".env")["FLASK_ENV"]
 
