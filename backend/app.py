@@ -1,6 +1,7 @@
 from flask import Flask, request
 from sentence_game.sentence_game_blueprint import sentence_game_blueprint
 from auth_methods.auth_blueprint import auth_blueprint
+from user_methods.user_blueprint import user_blueprint
 import waitress
 from dotenv import dotenv_values
 import json
@@ -10,6 +11,7 @@ ENVIRONMENT = dotenv_values(".env")["FLASK_ENV"]
 app = Flask(__name__)
 app.register_blueprint(sentence_game_blueprint)
 app.register_blueprint(auth_blueprint)
+app.register_blueprint(user_blueprint)
 
 
 @app.route("/")

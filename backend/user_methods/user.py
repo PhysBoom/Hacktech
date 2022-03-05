@@ -14,4 +14,10 @@ class User(FirebasePushableObject):
         self.sentence_game_games = sentence_game_games
         self.exp = exp
 
+    @staticmethod
+    def get_by_uuid(uuid):
+        user = User(object_id=uuid)
+        user.load()
+        return user
+
 

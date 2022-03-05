@@ -1,3 +1,5 @@
+from functools import wraps
+
 import pyrebase
 import firebase_admin
 from firebase_admin import credentials, auth
@@ -17,6 +19,24 @@ firebase = firebase_admin.initialize_app(cred)
 pb = pyrebase.initialize_app(firebase_config)
 database = pb.database()
 pbauth = pb.auth()
+
+def check_token(request):
+    def check_token_decorator(f):
+        @wraps(f)
+        def wrap(*args, **kwargs):
+            if not request.headers.get('authorization'):
+                return json.dumps({"success": False, "error": 'No token provided'})
+            try:
+                user = auth.verify_id_token(request.headers['authorization'])
+                request.user = user
+
+            except:
+                return json.dumps({"success": False, "error": 'Invalid token provided'})
+            return f(*args, **kwargs)
+
+        return wrap
+
+    return check_token_decorator
 
 
 def noquote(s, safe=None):

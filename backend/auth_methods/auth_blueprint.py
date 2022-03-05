@@ -1,6 +1,6 @@
 import json
 
-from auth_methods.user import User
+from user_methods.user import User
 from utility.firebase_interactor import register_user, login
 
 from flask import request, Blueprint
