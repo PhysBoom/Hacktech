@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './index.css';
 import Navbar from "./components/Navbar";
-import {Register} from './pages'
+import {Register, GameModes} from './pages'
 import {
   Switch,
   Route,
@@ -15,9 +15,13 @@ function App() {
         <Route path="/register">
           <Register />
         </Route>
+        <Route path="/gamemodes">
+          <GameModes />
+        </Route>
       </Switch>
     </div>
   );
 }
 
 export default App;
+
