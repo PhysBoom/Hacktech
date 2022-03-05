@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="033dac0e-3283-417c-b181-995477179c5f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth_methods/auth_blueprint.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth_methods/auth_blueprint.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utility/firebase_interactor.py" beforeDir="false" afterPath="$PROJECT_DIR$/utility/firebase_interactor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

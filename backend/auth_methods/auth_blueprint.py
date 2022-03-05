@@ -18,7 +18,7 @@ def register():
     if resp['success']:
         user = User(object_id = resp['uuid'], email = email)
         user.push()
-    return str(resp)
+    return json.dumps(resp)
 
 
 

@@ -65,6 +65,6 @@ def login(email, password):
 def register_user(email, password):
     try:
         user = pbauth.create_user_with_email_and_password(email, password)
-        return {"success": True, "id_token": user["idToken"], "uuid": user["localId"], "refresh_token": user["refreshToken"]}
+        return {"success": True, "message": "Registered successfully!", "id_token": user["idToken"], "uuid": user["localId"], "refresh_token": user["refreshToken"]}
     except:
         return {"success": False, "error": "User already exists or is invalid"}
