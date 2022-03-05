@@ -1,4 +1,6 @@
 import json
+
+from auth_methods.user import User
 from utility.firebase_interactor import register_user, login
 
 from flask import request, Blueprint
@@ -13,10 +15,10 @@ def register():
     data = request.get_json()
     email, password = data['email'], data['password']
     resp = register_user(email, password)
-    if resp.success:
-        user = User(object_id = resp.uuid, email = email)
+    if resp['success']:
+        user = User(object_id = resp['uuid'], email = email)
         user.push()
-    return resp
+    return str(resp)
 
 
 

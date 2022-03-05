@@ -10,3 +10,4 @@ wordfreq
 language_tool_python
 pyrebase
 firebase_admin
+itsdangerous==2.0.1
