@@ -1,3 +1,11 @@
 waitress
 flask
 python-dotenv
+nltk
+transformers
+sentence-transformers
+numpy
+pandas
+wordfreq
+language_tool_python
+random
