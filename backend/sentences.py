@@ -63,30 +63,15 @@ class SentenceAnalyzer:
 
     def generate_random_sentence(self):
         text = ""
-        verbs = [
-            "enjoy",
-            "like",
-            "hate",
-            "despise",
-            "thoroughly enjoy",
-            "love",
-            "absolutely hate",
-        ]
-        gerund_list = [
-            "walking",
-            "running",
-            "swimming",
-            "biking",
-            "sprinting",
-            "boating",
-            "skiing",
-        ]
-        adverb_list = ["quickly", "swimmingly"]
-        adjective_list = ["red", "blue"]
-        nouns = ["dogs", "cats"]
+        nouns = ["You","I","They","He","She","Jaden","Ethan", "Kaylee", "Matthew", "Sarah", "Catherine", "Leonard", "Bradbury", "Moses", "Noah", "Miles", "Evan", "Sam", "Enzo", "Heather", "Hana", "Hannah", "Mr. Maine", "Mr. Nguyen", "Ms. Underwood", "Max", "Zander", "Wesley"]
+        verbsI = ["enjoy", "like", "love", "dislike", "hate", "despise", "appreciate","adore", "fancy", "loathe", "detest", "abhor"]
+        verbsNotI = ["enjoys","likes","loves","dislikes", "despises","hates","appreciates","adores","fancies","loathes","detests","abhors"]
+        gerund = ["walking", "running", "sprinting", "jogging", "ice skating", "skiing", "jumping", "bungee jumping", "skydiving", "bowling", "dancing", "making money", "wasting time", "swimming", "snowboarding", "taking the bus", "traveling", "watching Netflix", "playing Valorant", "playing Fortnite", "playing Minecraft", "playing Chess", "programming", "drinking water"]
+        prob1 = random.randint(1, 100)
+        prob2 = random.randint(1, 100)
+        noun_choice = random.choice(nouns)
         while not text or self.tool.check(text):
-            text = f"I {random.choice(verbs)} {random.choice(gerund_list)}"
-
+            text = f"{noun_choice} {random.choice(verbsI) if noun_choice in ['I', 'You', 'They'] else random.choice(verbsNotI)} {random.choice(gerund)}"
         return text
 
     def check_grammar(self, sentence):
