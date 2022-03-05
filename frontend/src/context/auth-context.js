@@ -4,7 +4,7 @@ const AuthContext = React.createContext({
     authToken: null,
     userData: null,
     loggedIn: false,
-    login: () => {},
+    login: (email, password) => {},
     logout: () => {},
     verifyToken: () => {},
     fetchUserData: () => {},

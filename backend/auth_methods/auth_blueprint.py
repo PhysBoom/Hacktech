@@ -20,5 +20,15 @@ def register():
         user.push()
     return json.dumps(resp)
 
+@auth_blueprint.route('/login', methods=['POST'])
+def login_user():
+    """
+    Logs in a user
+    """
+    data = request.get_json()
+    email, password = data['email'], data['password']
+    resp = login(email, password)
+    return json.dumps(resp)
+
 
 
