@@ -17,3 +17,5 @@ pyOpenSSL==19.0.0
 Flask-Login==0.4.1
 json
 sqlite3
+random-word
+english-words
