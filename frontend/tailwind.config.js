@@ -48,7 +48,7 @@ module.exports = {
         "primary": "#4969c9",
         "secondary": "#b5b4e4",
         "highlight": "#dfafe9",
-        "contrast": "908aa8"
+        "contrast": "#908aa8"
       },
       maxWidth: SPACING,
     },
