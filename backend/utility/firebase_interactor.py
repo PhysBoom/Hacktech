@@ -17,13 +17,16 @@ firebase = firebase_admin.initialize_app(cred)
 pb = pyrebase.initialize_app(firebase_config)
 database = pb.database()
 
+
 def noquote(s, safe=None):
     return s
+
 
 # Push an object to the database
 def push_object(path, data, load_json=True):
     db = pb.database()
     db.child(path).set(json.loads(data) if load_json else data)
+
 
 # Get an object from the database
 def get_object(path, query_dict={}):

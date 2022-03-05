@@ -1,6 +1,7 @@
 import json
 from .firebase_interactor import push_object, get_object
 
+
 class FirebasePushableObject:
     """
     Any JSON-able object that is pushed to Firebase.
@@ -21,14 +22,14 @@ class FirebasePushableObject:
         """
         Pushes the object to Firebase
         """
-        path = self.parent_path + '/' + self.object_id
+        path = self.parent_path + "/" + self.object_id
         push_object(path, self.to_json())
 
     def load(self):
         """
         Gets the object from Firebase.
         """
-        path = self.parent_path + '/' + self.object_id
+        path = self.parent_path + "/" + self.object_id
         # Get the data from the path
         data = get_object(path)
         # Create a new object from the data
@@ -38,13 +39,6 @@ class FirebasePushableObject:
         """
         Creates a FirebasePushableObject from a dictionary
         """
-        parent_path = kwargs.pop('parent_path')
-        object_id = kwargs.pop('object_id')
+        parent_path = kwargs.pop("parent_path")
+        object_id = kwargs.pop("object_id")
         self.__init__(parent_path, object_id, **kwargs)
-
-
-
-
-
-
-
