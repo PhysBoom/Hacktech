@@ -8,4 +8,5 @@ numpy
 pandas
 wordfreq
 language_tool_python
-random
+pyrebase
+firebase_admin
