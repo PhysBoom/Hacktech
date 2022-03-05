@@ -16,6 +16,7 @@ firebase = firebase_admin.initialize_app(cred)
 
 pb = pyrebase.initialize_app(firebase_config)
 database = pb.database()
+pbauth = pb.auth()
 
 
 def noquote(s, safe=None):
@@ -53,3 +54,17 @@ def get_object(path, query_dict={}):
         except Exception as e:
             print(e)
     return top.get().val()
+
+def login(email, password):
+    try:
+        user = pbauth.sign_in_with_email_and_password(email, password)
+        return {"success": True, "id_token": user["idToken"], "uuid": user["localId"], "refresh_token": user["refreshToken"]}
+    except:
+        return {"success": False, "error": "Invalid credentials"}
+
+def register_user(email, password):
+    try:
+        user = pbauth.create_user_with_email_and_password(email, password)
+        return {"success": True, "id_token": user["idToken"], "uuid": user["localId"], "refresh_token": user["refreshToken"]}
+    except:
+        return {"success": False, "error": "User already exists"}

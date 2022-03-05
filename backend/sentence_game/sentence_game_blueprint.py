@@ -1,6 +1,6 @@
 import json
 
-from flask import request, send_file, Blueprint
+from flask import request, Blueprint
 from .sentence_game import SentenceGame
 
 # Blueprint for the sentence game
