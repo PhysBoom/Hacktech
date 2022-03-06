@@ -10,6 +10,7 @@ import {
 import AuthContext from './context/auth-context';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   const cookies = new Cookies();
@@ -82,6 +83,8 @@ function App() {
     })
     if (resp.data.success){
       setLoggedIn(true);
+    } else {
+      history.push("/login");
     }
     return resp;
   }
@@ -125,7 +128,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/register">
-            <Register />
+            <PrivateRoute><Register /></PrivateRoute>
           </Route>
           <Route path="/login">
             <Login />
