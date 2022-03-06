@@ -1,33 +1,29 @@
-import React, {useState} from 'react';
-import axios from 'axios';
+import React, {useState, useContext} from 'react';
 import TextInputBox from '../components/TextInputBox';
 import {ButtonPrimary} from '../components/Buttons';
 import {TextNotify} from '../components/Alerts';
 import {Toaster} from 'react-hot-toast';
+import AuthContext from '../context/auth-context';
+import {useHistory} from 'react-router-dom';
 import {FullScreenLoader} from '../components/Loaders';
 
-function Register(){
+function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
-    async function handleRegistration(){
+    const auth = useContext(AuthContext);
+    const history = useHistory();
+
+    async function handleLogin(){
         setLoading(true);
-        const resp = await axios({
-            method: "POST",
-            url: "/auth/register",
-            data: {
-                email: email,
-                password: password
-            }
-        })
+        const resp = await auth.login(email, password);
         if (resp.data.success){
-            TextNotify(resp.data.message, "success");
+            history.push("/gamemodes");
         } else {
             TextNotify(resp.data.error, "error");
         }
         setLoading(false);
-        
     }
 
     return (
@@ -35,10 +31,10 @@ function Register(){
             {loading && <FullScreenLoader />}
             <div className="flex flex-col justify-center items-center h-full w-screen">
                 <div className="flex flex-col space-y-6 justify-center items-center drop-shadow-lg bg-white rounded-md p-6 border-2 border-primary">
-                    <h1 className="text-2xl font-bold text-black">Register</h1>
+                    <h1 className="text-2xl font-bold text-black">Login</h1>
                     <TextInputBox inputName="Email" name="email" type="email" onChange={(e) => setEmail(e.target.value)}/>
                     <TextInputBox inputName="Password" name="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
-                    <ButtonPrimary onClick={handleRegistration}>Register</ButtonPrimary>
+                    <ButtonPrimary onClick={handleLogin}>Login</ButtonPrimary>
                 </div>
             </div>
             <Toaster />
@@ -46,4 +42,4 @@ function Register(){
     )
 }
 
-export default Register;
+export default Login;
