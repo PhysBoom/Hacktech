@@ -31,9 +31,7 @@ function Navbar(){
                 </div>
                 {authContext.loggedIn && 
                     <div className="flex flex-row space-x-4 items-center">
-                        <div className="bg-white border-2 border-black rounded-lg items-center justify-center px-2 py-1">
-                            <span className="text-md text-black font-semibold">100 EXP</span>
-                        </div>
+                        <span className="text-md text-white font-semibold">{`${authContext.userData?.exp.toFixed(0) || 0} EXP`}</span>
                     </div>
                 }
                 {!authContext.loggedIn && <ButtonSecondary onClick={() => history.push("/login")}>Login</ButtonSecondary>}

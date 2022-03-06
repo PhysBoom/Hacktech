@@ -39,6 +39,9 @@ def verify_auth_token():
     :param token: the auth token to verify
     :return:
     """
-    data = request.get_json()
-    token = data['token']
-    return json.dumps(verify_id_token(token))
+    try:
+        data = request.get_json()
+        token = data['token']
+        return json.dumps(verify_id_token(token))
+    except Exception as e:
+        return json.dumps({'success': False, 'error': "Please log in!"})

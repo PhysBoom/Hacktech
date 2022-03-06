@@ -3,6 +3,7 @@ import json
 from flask import request, Blueprint
 
 from user_methods.user import User
+from utility.firebase_interactor import check_token
 from .sentence_game import SentenceGame
 
 # Blueprint for the sentence game
@@ -55,8 +56,37 @@ def play_round(game_id):
     game = SentenceGame(object_id=game_id)
     game.load()
     if game.is_finished():
-        return json.dumps({"success": False, "error": "Game is finished."})
+        return json.dumps({"success": False, "error": "Game is finished! Either you ran out of time or turns", "game_finished": True})
     sentence = request.json["sentence"]
     resp=game.play_round(sentence)
     game.push()
+    if game.is_finished():
+        resp['game_finished'] = True
+    else:
+        resp['game_finished'] = False
+
     return json.dumps({"success": True, "response": resp, "game": json.loads(game.to_json())})
+
+@sentence_game_blueprint.route("/<game_id>/finish", methods=["POST"])
+@check_token(request)
+def end_game(game_id):
+    """
+    Ends the game.
+    :param <UUIDv4> game_id: Id of the game
+    :param <string> uuid: UUID of user to attach the game to.
+    :return: JSONified game object + success
+    """
+    data = request.get_json()
+    uuid = data["uuid"]
+    if not uuid == request.user['user_id']:
+        return json.dumps({"success": False, "error": "Unauthorized"})
+
+    user = User.get_by_uuid(uuid)
+    game = SentenceGame(object_id=game_id)
+    game.load()
+    user.exp += game.score
+    print(user.exp)
+    user.remove_sentence_game(game_id)
+    user.push()
+
+    return json.dumps({"success": True, "user": json.loads(user.to_json())})
