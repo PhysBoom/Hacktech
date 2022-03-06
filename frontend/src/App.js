@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import './index.css';
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import {Register, Login, GameModes, SentenceGen, Home} from './pages'
 
 import {
@@ -144,6 +145,7 @@ function App() {
             <Home />
           </Route>
         </Switch>
+        <Footer />
       </div>
     </AuthContext.Provider>
   );
