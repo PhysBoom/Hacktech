@@ -1,5 +1,4 @@
 from sentence_transformers import SentenceTransformer, util
-from nltk.corpus import wordnet
 from wordfreq import word_frequency
 
 import language_tool_python
@@ -7,9 +6,7 @@ import language_tool_python
 
 import numpy as np
 import random
-import nltk
 
-nltk.download("wordnet")
 
 
 class SentenceAnalyzer:
