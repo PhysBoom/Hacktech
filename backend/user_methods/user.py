@@ -8,10 +8,13 @@ class User(FirebasePushableObject):
     :param <UUIDv4[]> sentence_game_games: IDs of active sentence game games owned by the user
     :param <int> exp: Experience
     """
-    def __init__(self, parent_path="Users", object_id=None, email=None, sentence_game_games=[], exp=0):
+    def __init__(self, parent_path="Users", object_id=None, email=None, sentence_game_games=None, exp=0):
         super().__init__(parent_path, object_id)
         self.email = email
-        self.sentence_game_games = sentence_game_games
+        if self.sentence_game_games is not None:
+            self.sentence_game_games = sentence_game_games
+        else:
+            self.sentence_game_games = []
         self.exp = exp
 
     def add_sentence_game(self, sentence_game_id):
