@@ -33,6 +33,7 @@ SPACING = {
   '80': '320px',
   '96': '384px',
   '128': '512px',
+  '256': '768px',
   '1200': '1200px',
   '1600': '1600px',
   'full': '100%',
@@ -51,6 +52,8 @@ module.exports = {
         "contrast": "#908aa8"
       },
       maxWidth: SPACING,
+      height: SPACING,
+      maxHeight: SPACING
     },
   },
   plugins: [],
