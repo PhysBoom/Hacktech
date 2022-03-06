@@ -8,6 +8,7 @@ function SentenceGen() {
     const auth = useContext(AuthContext);
     const [curSentenceGame, setCurSentenceGame] = useState(null);
     const [curSentence, setCurSentence] = useState("");
+    const [countdownTimer, setCountdownTimer] = useState(null);
     const [loading, setLoading] = useState(false);
 
     async function initiateSentenceGame(){
@@ -71,6 +72,34 @@ function SentenceGen() {
         initiateSentenceGame();
     }, []);
 
+    // Update the countdown timer every second.
+    function updateCountdownTimer() {
+        const duration = curSentenceGame.duration;
+        const start_time = curSentenceGame.start_time;
+        // Get the current UNIX time
+        const cur_time = Math.floor(Date.now() / 1000);
+        // Calculate the time remaining
+        const time_remaining = duration - (cur_time - start_time);
+        // If the time remaining is less than 0, end the game
+        if (time_remaining <= 0){
+            // End game.
+        } else {
+            // If the time remaining is greater than 0, set the countdown timer to MM:SS
+            setCountdownTimer(`${Math.floor(time_remaining / 60)}:${time_remaining % 60}`);
+        }
+    }
+
+    useEffect(() => {
+        if (curSentenceGame){
+            updateCountdownTimer();
+            const interval = setInterval(() => {
+                updateCountdownTimer();
+            }, 1000);
+            return () => clearInterval(interval);
+        }
+    }, [curSentenceGame]);
+            
+
     return (
         
         <div className="w-screen h-screen">
@@ -80,7 +109,7 @@ function SentenceGen() {
                     <div className="flex flex-col space-y-6">
                         <div className="flex flex-row w-full justify-between items-center">
                             <div className="border-2 rounded-md rounded-md border-black p-2">
-                                <h3 className="text-xl text-black">Round X 5:00</h3>
+                                <h3 className="text-xl text-black flex flex-row space-x-6"><span>{`Turns Remaining: ${curSentenceGame ? curSentenceGame.rounds - curSentenceGame.round_number : "0"} `}</span><span>{`${countdownTimer? countdownTimer : "00:00"}`}</span></h3>
                             </div>
                             <div className="border-2 rounded-md border-black p-2">
                                 <h3 className="text-xl text-black">{`Score: ${curSentenceGame && parseFloat(curSentenceGame.score).toFixed(0)}`}</h3>

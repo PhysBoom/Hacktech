@@ -1,3 +1,5 @@
+import time
+
 from sentences import SentenceAnalyzer
 import uuid
 from utility.firebase_pushable_object import FirebasePushableObject
@@ -11,6 +13,8 @@ class SentenceGame(FirebasePushableObject):
     :param <int> rounds: The number of rounds to play
     :param <int> round_number: The current round number.
     :param <string> sentence: The sentence to be replaced.
+    :param <UNIX Timestamp> start_time: The time the game started.
+    :param <UNIX Timestamp> duration: The duration of the game.
     """
 
     def __init__(
@@ -22,6 +26,8 @@ class SentenceGame(FirebasePushableObject):
         rounds=10,
         round_number=1,
         sentence=None,
+        start_time=None,
+        duration=120
     ):
         # Generate a random UUIDv4 for game_id if its none.
         if object_id is None:
@@ -38,6 +44,8 @@ class SentenceGame(FirebasePushableObject):
             self._generate_sentence()
         else:
             self.sentence = sentence
+        self.start_time = start_time or int(time.time())
+        self.duration = duration
 
     def _generate_sentence(self):
         self.sentence = self.sentence_analyzer.generate_random_sentence()
@@ -72,7 +80,7 @@ class SentenceGame(FirebasePushableObject):
         return {"score": self.score, "message": "Good sentence!"}
 
     def is_finished(self):
-        return self.round_number >= self.rounds
+        return self.round_number >= self.rounds or int(time.time()) - self.start_time > self.duration
 
     def to_json(self):
         tmp = self.sentence_analyzer

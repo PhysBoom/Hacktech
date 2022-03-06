@@ -55,7 +55,7 @@ def play_round(game_id):
     game = SentenceGame(object_id=game_id)
     game.load()
     if game.is_finished():
-        return json.dumps({"success": False, "error": "Game is finished."})
+        return json.dumps({"success": False, "error": "Game is finished! Either you ran out of time or turns"})
     sentence = request.json["sentence"]
     resp=game.play_round(sentence)
     game.push()
