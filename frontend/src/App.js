@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import './index.css';
 import Navbar from "./components/Navbar";
-import {Register, Login} from './pages'
+import {Register, Login, GameModes} from './pages'
 import {
   Switch,
   Route,
@@ -133,6 +133,9 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
+          <Route path="/gamemodes">
+            <GameModes />
+          </Route>
         </Switch>
       </div>
     </AuthContext.Provider>
@@ -140,3 +143,4 @@ function App() {
 }
 
 export default App;
+

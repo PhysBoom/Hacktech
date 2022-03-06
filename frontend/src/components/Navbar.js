@@ -21,8 +21,9 @@ function Navbar(){
     const authContext = useContext(AuthContext);
     const history = useHistory();
     return (
-        <div className="flex w-screen py-3 px-2 bg-primary items-center justify-center">
-            <div className="flex flex-row items-center justify-between w-full max-w-1600">
+        <div className="flex w-screen py-4 px-2 bg-primary items-center justify-center">
+            <div className="flex flex-row items-center justify-between w-full max-w-1200">
+
                 <div className="flex flex-row space-x-6 items-center">
                     <NavbarLink to="/"><h1 className="text-2xl font-bold">WordPath</h1></NavbarLink>
                     <NavbarLink to="/leaderboard"><span className="ml-3">Leaderboard</span></NavbarLink>
