@@ -12,6 +12,15 @@ import React from 'react';
  * @returns 
  */
 export function TextInputBox(props){
+    if (props.type === "textarea"){
+        return (
+            <label style={{"width": props.width || "100%"}}>
+                <span className={`${props.inputClassName || "text-dark-grey"}`}>{props.inputName}</span>
+                <textarea className={`${props.className} ${props.errors && "border-bright-red"} appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-dark-blue leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mt-1`} onChange={props.onChange} name={props.name} value={props.value} placeholder={props.placeholder} rows={props.rows} onKeyDown={props.onKeyDown}/>
+                <span className="text-bright-red text-sm whitespace-pre">{props.errors}</span>
+            </label>
+        )
+    }
     return (
         <label style={{"width": props.width || "100%"}}>
             <span className={`${props.inputClassName || "text-gray-700"} `}>{props.inputName}</span>
