@@ -7,4 +7,4 @@ function SentenceGen() {
     )
 }
 
-export default SentenceGen
+export default SentenceGen;

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import './index.css';
 import Navbar from "./components/Navbar";
-import {Register, Login, GameModes, SentenceGen} from './pages'
+import {Register, Login, GameModes, SentenceGen, Home} from './pages'
 
 import {
   Switch,
@@ -139,6 +139,9 @@ function App() {
           </Route>
           <Route path="/sentencegen">
             <SentenceGen />
+          </Route>
+          <Route exact path="/">
+            <Home />
           </Route>
         </Switch>
       </div>
