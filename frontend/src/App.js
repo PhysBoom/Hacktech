@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import './index.css';
 import Navbar from "./components/Navbar";
 import {Register, Login} from './pages'
@@ -21,6 +21,13 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [lastAuthRefresh, setLastAuthRefresh] = useState(Date.now());
 
+  // Verify token on startup
+  useEffect(() => {
+    if (authToken) {
+      verifyToken();
+    }
+  }, [authToken, verifyToken]);
+
   async function login(email, password){
     const resp = await axios({
         method: "POST",
@@ -31,12 +38,12 @@ function App() {
         }
     })
     if (resp.data.success){
-      cookies.set('authToken', resp.data.authToken, {path: '/'});
+      cookies.set('authToken', resp.data.id_token, {path: '/'});
       cookies.set('uuid', resp.data.uuid, {path: '/'});
-      cookies.set('refreshToken', resp.data.refreshToken, {path: '/'});
+      cookies.set('refreshToken', resp.data.refresh_token, {path: '/'});
       setUuid(resp.data.uuid);
-      setAuthToken(resp.data.authToken);
-      setRefreshToken(resp.data.refreshToken);
+      setAuthToken(resp.data.id_token);
+      setRefreshToken(resp.data.refresh_token);
       fetchUserData(resp.data.uuid);
       setLoggedIn(true);
     }
@@ -63,6 +70,20 @@ function App() {
     }
     return resp;
 
+  }
+
+  async function verifyToken(){
+    const resp = await axios({
+        method: "POST",
+        url: "/auth/verify",
+        data: {
+            token: authToken
+        }
+    })
+    if (resp.data.success){
+      setLoggedIn(true);
+    }
+    return resp;
   }
 
   async function refreshAuthToken(){
@@ -98,6 +119,7 @@ function App() {
       loggedIn: loggedIn,
       fetchUserData: fetchUserData,
       uuid: uuid,
+      verifyToken: verifyToken
     }}>
       <div className="w-screen h-screen bg-white">
         <Navbar />

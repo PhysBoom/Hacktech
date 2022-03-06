@@ -42,6 +42,11 @@ def check_token(request):
 def noquote(s, safe=None):
     return s
 
+def verify_id_token(id_token):
+    try:
+        return {"success": True, "data": auth.verify_id_token(id_token)}
+    except:
+        return {"success": False, "error": "Invalid token"}
 
 # Push an object to the database
 def push_object(path, data, load_json=True):

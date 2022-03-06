@@ -1,7 +1,7 @@
 import json
 
 from user_methods.user import User
-from utility.firebase_interactor import register_user, login
+from utility.firebase_interactor import register_user, login, verify_id_token
 
 from flask import request, Blueprint
 
@@ -31,4 +31,14 @@ def login_user():
     return json.dumps(resp)
 
 
-
+@auth_blueprint.route('/verify', methods=['POST'])
+def verify_auth_token():
+    """
+    Verifies a firebase auth token.
+    In JSON:
+    :param token: the auth token to verify
+    :return:
+    """
+    data = request.get_json()
+    token = data['token']
+    return json.dumps(verify_id_token(token))
