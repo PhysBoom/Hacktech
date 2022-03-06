@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="033dac0e-3283-417c-b181-995477179c5f" name="Changes" comment="" />
+    <list default="true" id="033dac0e-3283-417c-b181-995477179c5f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sentence_game/sentence_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence_game/sentence_game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/TextInputBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/TextInputBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/SentenceGen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/SentenceGen.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

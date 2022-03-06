@@ -91,7 +91,6 @@ function App() {
   }
 
   async function refreshAuthToken(){
-    console.log("Refreshing")
     const resp = await axios({
         method: "POST",
         url: `https://securetoken.googleapis.com/v1/token?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,

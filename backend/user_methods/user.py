@@ -20,4 +20,7 @@ class User(FirebasePushableObject):
         user.load()
         return user
 
+    def add_sentence_game(self, sentence_game_id):
+        self.sentence_game_games.append(sentence_game_id)
+
 
