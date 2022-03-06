@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 import './index.css';
 import Navbar from "./components/Navbar";
-import {Register, Login, GameModes} from './pages'
+import {Register, Login, GameModes, SentenceGen} from './pages'
+
 import {
   Switch,
   Route,
@@ -135,6 +136,9 @@ function App() {
           </Route>
           <Route path="/gamemodes">
             <GameModes />
+          </Route>
+          <Route path="/sentencegen">
+            <SentenceGen />
           </Route>
         </Switch>
       </div>
