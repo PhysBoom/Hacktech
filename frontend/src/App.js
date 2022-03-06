@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './index.css';
 import Navbar from "./components/Navbar";
-import {Register, GameModes} from './pages'
+import {Register, GameModes, SentenceGen} from './pages'
 import {
   Switch,
   Route,
@@ -17,6 +17,9 @@ function App() {
         </Route>
         <Route path="/gamemodes">
           <GameModes />
+        </Route>
+        <Route path="/sentencegen">
+          <SentenceGen />
         </Route>
       </Switch>
     </div>
