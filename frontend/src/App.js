@@ -67,6 +67,7 @@ function App() {
             "Authorization": authToken
         }
     })
+    console.log(resp);
     if (resp.data.success){
       setUserData(resp.data.user);
     }
@@ -119,6 +120,7 @@ function App() {
       login: login,
       logout: logout,
       userData: userData,
+      setUserData: setUserData,
       loggedIn: loggedIn,
       fetchUserData: fetchUserData,
       uuid: uuid,
@@ -137,7 +139,7 @@ function App() {
             <GameModes />
           </Route>
           <Route path="/sentencegen">
-            <SentenceGen />
+            <PrivateRoute><SentenceGen /></PrivateRoute>
           </Route>
         </Switch>
       </div>

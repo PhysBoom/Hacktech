@@ -16,11 +16,14 @@ class User(FirebasePushableObject):
 
     @staticmethod
     def get_by_uuid(uuid):
-        user = User(object_id=uuid)
-        user.load()
-        return user
+        cur_user = User(object_id=uuid)
+        cur_user.load()
+        return cur_user
 
     def add_sentence_game(self, sentence_game_id):
         self.sentence_game_games.append(sentence_game_id)
+
+    def remove_sentence_game(self, sentence_game_id):
+        self.sentence_game_games.remove(sentence_game_id)
 
 

@@ -67,7 +67,7 @@ class SentenceGame(FirebasePushableObject):
             self.sentence, new_sentence
         )
 
-        if similarity < 0.82:
+        if similarity < 0.72:
             self.past_sentences.append({"sentence": new_sentence, "score": 0})
             return {
                 "score": self.score,
