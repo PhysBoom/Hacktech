@@ -26,7 +26,6 @@ function Navbar(){
 
                 <div className="flex flex-row space-x-6 items-center">
                     <NavbarLink to="/"><h1 className="text-2xl font-bold">WordPath</h1></NavbarLink>
-                    <NavbarLink to="/leaderboard"><span className="ml-3">Leaderboard</span></NavbarLink>
                     <NavbarLink to="/gamemodes">Gamemodes</NavbarLink>
                     <NavbarLink to="/register">Register</NavbarLink>
                 </div>

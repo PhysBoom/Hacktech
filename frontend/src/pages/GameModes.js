@@ -44,7 +44,7 @@ function GameModes() {
                                 />
                                 <div class="p-8 text-center">
                                     <h3 className="text-2xl text-black  font-semibold mb-6">
-                                        Synonymizer
+                                        Synonymizer (Coming Soon)
                                     </h3>
                                     <p class="text-base text-body-color leading-relaxed mb-7">
                                         Synonymizer is a game in which you must write a given word's synonym as fast as possible. You get points for both accuracy and for time, so be sure to be swift! See if you can make it onto the leaderboard!
