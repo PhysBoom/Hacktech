@@ -26,6 +26,7 @@ function SentenceGen() {
     const [gameEndModalIsOpen, setGameEndModalIsOpen] = useState(false);
 
     async function initiateSentenceGame(){
+        console.log("Initiating");
         setLoading(true);
         const resp = await auth.fetchUserData();
         console.log(resp);
@@ -111,8 +112,11 @@ function SentenceGen() {
     }
 
     useEffect(() => {
-        initiateSentenceGame();
-    }, []);
+        if (auth.userData?.object_id && !curSentenceGame){
+            initiateSentenceGame();
+        }
+        
+    }, [auth.userData?.object_id]);
 
     // Update the countdown timer every second.
     function updateCountdownTimer() {
@@ -128,7 +132,10 @@ function SentenceGen() {
             endGame();
         } else {
             // If the time remaining is greater than 0, set the countdown timer to MM:SS
-            setCountdownTimer(`${Math.floor(time_remaining / 60)}:${time_remaining % 60}`);
+            const minutes = Math.floor(time_remaining / 60);
+            const seconds = time_remaining % 60;
+            setCountdownTimer(`${minutes}:${seconds < 10 ? "0" : ""}${seconds}`);
+
         }
     }
 
@@ -149,7 +156,7 @@ function SentenceGen() {
             {loading && <FullScreenLoader />}
             {gameEndModalIsOpen && <GameEndModal score={curSentenceGame?.score} />}
             <div className="flex flex-row w-full h-full p-6">
-                <div className="flex flex-col h-full border-2 rounded-md border-black p-4 justify-between w-full max-h-256">
+                <div className="flex flex-col h-full border-2 rounded-md border-black p-4 justify-between w-full max-h-256 bg-game">
                     <div className="flex flex-col space-y-6">
                         <div className="flex flex-row w-full justify-between items-center">
                             <div className="border-2 rounded-md rounded-md border-black p-2">

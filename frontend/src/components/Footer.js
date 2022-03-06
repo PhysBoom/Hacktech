@@ -17,7 +17,7 @@ function Footer(){
         <div className="flex w-screen py-4 px-2 bg-primary items-center justify-center bottom-1">
             <div className="flex flex-row items-center justify-between w-full max-w-1200">
                 <div className="flex flex-row justify-center space-x-6 items-center w-full">
-                    <h1 className="text-white">Made by Dhruv Kulkarni and Matthew Chak, 2022</h1>
+                    <h1 className="text-white">Made by Dhruv Kulkarni and Matthew Chak for Hacktech, 2022</h1>
                 </div>
             </div>
         </div>

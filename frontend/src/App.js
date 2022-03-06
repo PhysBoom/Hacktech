@@ -28,6 +28,9 @@ function App() {
   useEffect(() => {
     if (authToken) {
       verifyToken();
+      if (!userData) {
+        fetchUserData();
+      }
     }
   }, [authToken, verifyToken]);
 

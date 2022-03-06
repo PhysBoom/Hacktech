@@ -12,8 +12,8 @@ user_blueprint = Blueprint('user', __name__, url_prefix='/user')
 def get_user_data(uuid):
     if not uuid == request.user['user_id']:
         return json.dumps({"success": False, "error": "Unauthorized"})
-    user = User.get_by_uuid(uuid)
-    print(user.to_dict())
+    user = User(object_id=uuid)
+    user.load()
     if user:
         return json.dumps({"success": True, "user": user.to_dict()})
     else:
