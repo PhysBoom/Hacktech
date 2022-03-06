@@ -128,7 +128,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/register">
-            <PrivateRoute><Register /></PrivateRoute>
+            <Register />
           </Route>
           <Route path="/login">
             <Login />

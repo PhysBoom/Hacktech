@@ -4,12 +4,15 @@ import TextInputBox from '../components/TextInputBox';
 import {ButtonPrimary} from '../components/Buttons';
 import {TextNotify} from '../components/Alerts';
 import {Toaster} from 'react-hot-toast';
+import {FullScreenLoader} from '../components/Loaders';
 
 function Register(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     async function handleRegistration(){
+        setLoading(true);
         const resp = await axios({
             method: "POST",
             url: "/auth/register",
@@ -23,11 +26,13 @@ function Register(){
         } else {
             TextNotify(resp.data.error, "error");
         }
+        setLoading(false);
         
     }
 
     return (
         <>
+            {loading && <FullScreenLoader />}
             <div className="flex flex-col justify-center items-center h-full w-screen">
                 <div className="flex flex-col space-y-6 justify-center items-center drop-shadow-lg bg-white rounded-md p-6 border-2 border-primary">
                     <h1 className="text-2xl font-bold text-black">Register</h1>
